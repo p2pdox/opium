@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nylon Authentication Loader</title>
+      <script src="lobject.js"></script>
+    <style>
+        body {
+            background-color: rgb(15, 15, 15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .panel {
+            background-color: rgb(20, 20, 20);
+            border: 2px solid purple;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px purple;
+            text-align: center;
+        }
+
+        .panel h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            background-color: rgb(20, 20, 20);
+            border: 2px solid purple;
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            width: 80%;
+            margin-bottom: 20px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .input-field:focus {
+            border-color: violet;
+        }
+
+        .button {
+            background-color: rgb(20, 20, 20);
+            border: 2px solid purple;
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Nylon Authentication Loader</h1>
+        <div>
+            <label for="user" style="color:white;">User:</label><br>
+            <input type="text" id="user" class="input-field" placeholder="Enter Username">
+        </div>
+        <div>
+            <label for="license" style="color:white;">License:</label><br>
+            <input type="text" id="license" class="input-field" placeholder="Enter License">
+        </div>
+        <button class="button" onclick="authenticate()">Load</button>
+        <p id="message" style="color:white;"></p>
+    </div>
+
+</body>
+</html>
