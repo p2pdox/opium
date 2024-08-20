@@ -1,252 +1,292 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nylon {Opium ~ Beta}</title>
-    <script src="object.js"></script>
-    <style>
-        /* General body styles */
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(15, 15, 15);
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            overflow: hidden; /* Prevents scrolling */
-        }
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nylon {Opium ~ Beta}</title>
+        <script src="object.js"></script>
+        <style>
+            /* General body styles */
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: rgb(15, 15, 15);
+                height: 100vh;
+                font-family: Arial, sans-serif;
+                overflow: hidden; /* Prevents scrolling */
+            }
 
-        /* Wrapper container for positioning */
-        .wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: flex-start; /* Align items at the top */
-            justify-content: center; /* Center horizontally */
-        }
+            /* Wrapper container for positioning */
+            .wrapper {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: flex-start; /* Align items at the top */
+                justify-content: center; /* Center horizontally */
+            }
 
-        /* Style for the vertical panel (docked to the left) */
-        .vertical-panel {
-            background-color: rgb(20, 20, 20);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
-            height: 600px;
-            width: 350px; /* Adjust width */
-            text-align: left;
-            color: white;
-            position: absolute; /* Absolute positioning */
-            left: 20px; /* Distance from the left edge */
-            top: 20px; /* Distance from the top edge */
-        }
+            /* Style for the vertical panel (docked to the left) */
+            .vertical-panel {
+                background-color: rgb(20, 20, 20);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
+                height: 600px;
+                width: 350px; /* Adjust width */
+                text-align: left;
+                color: white;
+                position: absolute; /* Absolute positioning */
+                left: 20px; /* Distance from the left edge */
+                top: 20px; /* Distance from the top edge */
+            }
 
-        /* Style for the dropdowns and buttons container */
-        .dropdown-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            gap: 10px; /* Space between dropdown and button */
-        }
+            /* Style for the dropdowns and buttons container */
+            .dropdown-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+                gap: 10px; /* Space between dropdown and button */
+            }
 
-        .dropdown-label {
-            color: white;
-            font-size: 16px;
-            margin-right: 10px; /* Space between label and dropdown */
-            width: 100px; /* Adjust width as needed */
-            text-align: right; /* Align text to the right */
-        }
+            .dropdown-label {
+                color: white;
+                font-size: 16px;
+                margin-right: 10px; /* Space between label and dropdown */
+                width: 100px; /* Adjust width as needed */
+                text-align: right; /* Align text to the right */
+            }
 
-        .dropdown {
-            background-color: rgb(15, 15, 15);
-            border: 2px solid;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
-            padding: 5px;
-            width: 150px; /* Adjust width */
-            box-shadow: 0 0 5px;
-            outline: none;
-        }
+            .dropdown {
+                background-color: rgb(15, 15, 15);
+                border: 2px solid;
+                border-radius: 10px;
+                color: white;
+                font-size: 16px;
+                padding: 5px;
+                width: 150px; /* Adjust width */
+                box-shadow: 0 0 5px;
+                outline: none;
+            }
 
-        /* Style for buttons */
-        .btn {
-            background-color: rgb(15, 15, 15);
-            border: 2px solid;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
-            padding: 5px 10px; /* Adjust padding */
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            outline: none;
-        }
+            /* Style for buttons */
+            .btn {
+                background-color: rgb(15, 15, 15);
+                border: 2px solid;
+                border-radius: 10px;
+                color: white;
+                font-size: 16px;
+                padding: 5px 10px; /* Adjust padding */
+                cursor: pointer;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                outline: none;
+            }
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 10px;
-        }
+            .btn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 10px;
+            }
 
-        /* Default styling for dropdowns and inputs */
-        .dropdown,
-        .textbox,
-        .btn {
-            border-color: white; /* Default border color */
-        }
+            /* Default styling for dropdowns and inputs */
+            .dropdown,
+            .textbox,
+            .btn {
+                border-color: white; /* Default border color */
+            }
 
-        /* Blue theme */
-        .male-theme .vertical-panel,
-        .male-theme .panel,
-        .male-theme .user-info-panel,
-        .male-theme .update-info-panel {
-            background-color: rgb(20, 20, 20); /* Keep panel background same */
-            border-color: #87CEEB; /* Blue border for Male theme */
-            box-shadow: 0 0 5px #87CEEB; /* Blue glow */
-        }
+            /* Blue theme */
+            .male-theme .vertical-panel,
+            .male-theme .panel,
+            .male-theme .user-info-panel,
+            .male-theme .update-info-panel {
+                background-color: rgb(20, 20, 20); /* Keep panel background same */
+                border-color: #87CEEB; /* Blue border for Male theme */
+                box-shadow: 0 0 5px #87CEEB; /* Blue glow */
+            }
 
-        .male-theme .dropdown,
-        .male-theme .textbox,
-        .male-theme .btn {
-            border-color: #87CEEB; /* Blue border for Male theme */
-            box-shadow: 0 0 5px #87CEEB; /* Blue glow */
-        }
+            .male-theme .dropdown,
+            .male-theme .textbox,
+            .male-theme .btn {
+                border-color: #87CEEB; /* Blue border for Male theme */
+                box-shadow: 0 0 5px #87CEEB; /* Blue glow */
+            }
 
-        /* Pink theme */
-        .female-theme .vertical-panel,
-        .female-theme .panel,
-        .female-theme .user-info-panel,
-        .female-theme .update-info-panel {
-            background-color: rgb(20, 20, 20); /* Keep panel background same */
-            border-color: rgb(255, 20, 147); /* Pink border for Female theme */
-            box-shadow: 0 0 15px 3px rgba(255, 20, 147, 0.8); /* Pink glow */
-        }
+            /* Pink theme */
+            .female-theme .vertical-panel,
+            .female-theme .panel,
+            .female-theme .user-info-panel,
+            .female-theme .update-info-panel {
+                background-color: rgb(20, 20, 20); /* Keep panel background same */
+                border-color: rgb(255, 20, 147); /* Pink border for Female theme */
+                box-shadow: 0 0 15px 3px rgba(255, 20, 147, 0.8); /* Pink glow */
+            }
 
-        .female-theme .dropdown,
-        .female-theme .textbox,
-        .female-theme .btn {
-            border-color: rgb(255, 20, 147); /* Pink border for Female theme */
-            box-shadow: 0 0 5px rgb(255, 20, 147); /* Pink glow */
-        }
+            .female-theme .dropdown,
+            .female-theme .textbox,
+            .female-theme .btn {
+                border-color: rgb(255, 20, 147); /* Pink border for Female theme */
+                box-shadow: 0 0 5px rgb(255, 20, 147); /* Pink glow */
+            }
 
-        /* Style for the central panel (docked to the top center) */
-        .panel {
-            background-color: rgb(20, 20, 20);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
-            width: 400px;
-            text-align: center;
-            color: white;
-            position: relative; /* Ensure it stays in the normal document flow */
-            margin-top: 40px; /* Move the panel down from the top */
-        }
+            /* Style for the central panel (docked to the top center) */
+            .panel {
+                background-color: rgb(20, 20, 20);
+                border-radius: 15px;
+                padding: 30px;
+                box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
+                width: 400px;
+                text-align: center;
+                color: white;
+                position: relative; /* Ensure it stays in the normal document flow */
+                margin-top: 40px; /* Move the panel down from the top */
+            }
 
-        /* Style for the header section */
-        .header {
-            margin-bottom: 20px;
-            font-size: 18px;
-        }
+            /* Style for the header section */
+            .header {
+                margin-bottom: 20px;
+                font-size: 18px;
+            }
 
-        /* Style for the textbox */
-        .textbox {
-            background-color: rgb(15, 15, 15);
-            border: 2px solid; /* Border color is set dynamically */
-            border-radius: 10px;
-            padding: 10px;
-            color: white;
-            font-size: 16px;
-            outline: none;
-            width: calc(100% - 24px); /* Account for padding and border */
-        }
+            /* Style for the textbox */
+            .textbox {
+                background-color: rgb(15, 15, 15);
+                border: 2px solid; /* Border color is set dynamically */
+                border-radius: 10px;
+                padding: 10px;
+                color: white;
+                font-size: 16px;
+                outline: none;
+                width: calc(100% - 24px); /* Account for padding and border */
+            }
 
-        /* Style for the Apply Token button */
-        #applyTokenBtn {
-            margin-top: 20px; /* Space between textbox and button */
-        }
+            /* Style for the Apply Token button */
+            #applyTokenBtn {
+                margin-top: 20px; /* Space between textbox and button */
+            }
 
-        #joindiscord {
-            margin-top: 20px; /* Space between textbox and button */
-        }
+            #joindiscord {
+                margin-top: 20px; /* Space between textbox and button */
+            }
 
-        /* Style for the tab containers */
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-        }
+            /* Style for the tab containers */
+            .tabs {
+                display: flex;
+                margin-bottom: 20px;
+            }
 
-        /* Default tab styles */
-        .tab {
-            background-color: rgb(20, 20, 20);
-            border: 2px solid rgb(30, 30, 30);
-            border-radius: 10px;
-            padding: 10px 20px;
-            margin: 0 5px;
-            color: white;
-            cursor: pointer;
-            user-select: none;
-            transition: background-color 0.3s, border-color 0.3s;
-        }
+            /* Default tab styles */
+            .tab {
+                background-color: rgb(20, 20, 20);
+                border: 2px solid rgb(30, 30, 30);
+                border-radius: 10px;
+                padding: 10px 20px;
+                margin: 0 5px;
+                color: white;
+                cursor: pointer;
+                user-select: none;
+                transition: background-color 0.3s, border-color 0.3s;
+            }
 
-        /* Active tab styles */
-        .tab.male-active {
-            background-color: #87CEEB; /* Bright blue for Male theme */
-            border-color: #87CEEB;
-        }
+            /* Active tab styles */
+            .tab.male-active {
+                background-color: #87CEEB; /* Bright blue for Male theme */
+                border-color: #87CEEB;
+            }
 
-        .tab.female-active {
-            background-color: rgb(255, 20, 147); /* Bright pink for Female theme */
-            border-color: rgb(255, 20, 147);
-        }
+            .tab.female-active {
+                background-color: rgb(255, 20, 147); /* Bright pink for Female theme */
+                border-color: rgb(255, 20, 147);
+            }
 
-        /* Style for the user information panel */
-        .user-info-panel {
-            background-color: rgb(20, 20, 20);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
-            width: 250px;
-            text-align: left;
-            color: white;
-            position: absolute; /* Absolute positioning */
-            bottom: 80px; /* Distance from the bottom edge */
-            right: 20px; /* Distance from the right edge */
-            border: 2px solid; /* Border color is set dynamically */
-        }
+            /* Style for the user information panel */
+            .user-info-panel {
+                background-color: rgb(20, 20, 20);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
+                width: 250px;
+                text-align: left;
+                color: white;
+                position: absolute; /* Absolute positioning */
+                bottom: 80px; /* Distance from the bottom edge */
+                right: 20px; /* Distance from the right edge */
+                border: 2px solid; /* Border color is set dynamically */
+            }
 
-        .user-info-panel .header {
-            margin-bottom: 10px;
-            font-size: 18px;
-            text-align: center;
-        }
+            .user-info-panel .header {
+                margin-bottom: 10px;
+                font-size: 18px;
+                text-align: center;
+            }
 
-        /* Style for the update log panel */
-      .update-info-panel {
-          background-color: rgb(20, 20, 20);
-          border-radius: 15px;
-          padding: 20px;
-          box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
-          width: 300px; /* Adjust width as needed */
-          text-align: left;
-          color: white;
-          position: fixed; /* Fixes the panel's position relative to the viewport */
-          bottom: 20px; /* Distance from the bottom of the viewport */
-          left: 50%; /* Center horizontally */
-          transform: translateX(-50%); /* Centers the panel horizontally */
-          border: 2px solid; /* Border color is set dynamically */
-          max-height: 200px; /* Limit height */
-          overflow-y: auto; /* Scrollbar for overflow */
-      }
+            /* Style for the update log panel */
+            .update-info-panel {
+                background-color: rgb(20, 20, 20);
+                border-radius: 15px;
+                padding: 20px;
+                box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.8);
+                width: 300px; /* Adjust width as needed */
+                text-align: center;
+                color: white;
+                position: fixed; /* Fixes the panel's position relative to the viewport */
+                bottom: 20px; /* Distance from the bottom of the viewport */
+                left: 50%; /* Center horizontally */
+                transform: translateX(-50%); /* Centers the panel horizontally */
+                border: 2px solid; /* Border color is set dynamically */
+                max-height: 200px; /* Limit height */
+                overflow-y: auto; /* Scrollbar for overflow */
+            }
 
+            .update-info-panel .header {
+                margin-bottom: 10px;
+                font-size: 18px;
+                text-align: center;
+            }
 
+            /* Mobile responsiveness */
+            @media (max-width: 768px) {
+                /* Adjust body to enable scrolling */
+                body {
+                    overflow-y: auto;
+                }
 
-        .update-info-panel .header {
-            margin-bottom: 10px;
-            font-size: 18px;
-            text-align: center;
-        }
+                .wrapper {
+                    flex-direction: column;
+                    align-items: center; /* Center content horizontally */
+                    padding: 20px; /* Padding to ensure content doesn't touch edges */
+                    height: auto; /* Allow height to be auto for mobile */
+                    overflow: visible; /* Allow overflow for mobile */
+                }
 
-    </style>
-</head>
+                .vertical-panel {
+                    position: static; /* Remove absolute positioning */
+                    width: 100%; /* Full width */
+                    margin-bottom: 20px; /* Space between vertical panel and other content */
+                }
+
+                .panel {
+                    width: 100%; /* Full width */
+                    margin-top: 20px; /* Space above the panel */
+                    box-shadow: none; /* Optional: remove shadow for mobile */
+                }
+
+                .user-info-panel,
+                .update-info-panel {
+                    transform: translateX(1%);
+                    position: static; /* Remove absolute positioning */
+                    width: 100%; /* Full width */
+                    margin-top: 20px; /* Space between panels */
+                    box-shadow: none; /* Optional: remove shadow for mobile */
+                    border: 2px solid white; /* Ensure borders are visible on mobile */
+                }
+
+                .update-info-panel {
+                    max-height: none; /* Remove height restriction */
+                    overflow: auto; /* Enable scrolling if needed */
+                }
+            }
+        </style>
+    </head>
 <body>
 
   
